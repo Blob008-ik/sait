@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>РАССОХА ПК | Магазин игровых компьютеров</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="bg-overlay"></div>
+    <div class="toast-container" id="toast-container"></div>
+    <nav>
+        <div class="logo" onclick="navigateTo('home')"><i class="fas fa-microchip"></i> РАССОХА ПК</div>
+        <ul class="nav-links">
+            <li onclick="navigateTo('home')" id="n-home">Главная</li>
+            <li onclick="navigateTo('catalog')" id="n-catalog">Каталог</li>
+            <li onclick="navigateTo('ideas')" id="n-ideas">Идеи</li>
+            <li onclick="navigateTo('support')" id="n-support">Поддержка</li>
+            <li onclick="toggleCartDropdown()" id="n-cart" style="position:relative">Корзина (<span id="cart-count">0</span>)</li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" title="Сменить тему"><i class="fas fa-moon" id="theme-icon"></i></button>
+            <button class="btn-action btn-cyan" onclick="navigateTo('catalog')"><i class="fas fa-shopping-cart"></i> Купить ПК</button>
+        </div>
+    </nav>
+    <div class="cart-dropdown" id="cart-dropdown">
+        <div class="cart-dropdown-header"><h3>Корзина</h3><span style="opacity:0.5;font-size:0.8rem" id="cart-dropdown-count">0 товаров</span></div>
+        <div class="cart-dropdown-items" id="cart-dropdown-items"></div>
+        <div class="cart-dropdown-footer" id="cart-dropdown-footer" style="display:none">
+            <div class="cart-dropdown-total"><span>Итого:</span><span id="cart-dropdown-total">0 ₽</span></div>
+            <button class="btn-action btn-cyan" style="width:100%" onclick="navigateTo('cart');closeCartDropdown()">Оформить заказ</button>
+        </div>
+    </div>
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="hero-badge"><i class="fas fa-fire"></i> Более 500 довольных клиентов</div>
+            <h1 class="hero-title">ИМСИТ</h1>
+            <p class="hero-desc">Создаем мощные игровые системы с 2024 года. Каждый ПК — это произведение инженерного искусства, собранное с любовью к деталям и тестированное под нагрузкой.</p>
+            <div class="hero-buttons">
+                <button class="btn-action btn-purple" onclick="navigateTo('catalog')"><i class="fas fa-rocket"></i> В каталог</button>
+                <button class="btn-action btn-outline" onclick="navigateTo('support')"><i class="fas fa-headset"></i> Помощь</button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item"><div class="stat-value">500+</div><div class="stat-label">Сборок</div></div>
+                <div class="stat-item"><div class="stat-value">3</div><div class="stat-label">Года опыта</div></div>
+                <div class="stat-item"><div class="stat-value">24/7</div><div class="stat-label">Поддержка</div></div>
+                <div class="stat-item"><div class="stat-value">2</div><div class="stat-label">Года гарантии</div></div>
+            </div>
+        </div>
+        <div class="features-section reveal">
+            <div class="section-header"><h2>Почему выбирают нас</h2><p>Мы делаем всё, чтобы ваш gaming experience был безупречен</p></div>
+            <div class="features-grid">
+                <div class="feature-card"><div class="feature-icon" style="background:rgba(0,242,254,0.1);color:var(--accent)"><i class="fas fa-shield-alt"></i></div><h3>Гарантия 2 года</h3><p>Полное покрытие всех компонентов. Быстрый обмен без лишних вопросов.</p></div>
+                <div class="feature-card"><div class="feature-icon" style="background:rgba(157,80,187,0.1);color:var(--accent-purple)"><i class="fas fa-truck"></i></div><h3>Доставка по РФ</h3><p>Безопасная упаковка и доставка в любую точку России от 1 дня.</p></div>
+                <div class="feature-card"><div class="feature-icon" style="background:rgba(255,153,102,0.1);color:var(--accent-orange)"><i class="fas fa-tools"></i></div><h3>Сборка под заказ</h3><p>Измените любой компонент под свои задачи. Индивидуальный подход.</p></div>
+                <div class="feature-card"><div class="feature-icon" style="background:rgba(0,217,163,0.1);color:var(--accent-green)"><i class="fas fa-vial"></i></div><h3>Стресс-тест</h3><p>Каждый ПК проходит 24-часовое тестирование перед отправкой.</p></div>
+            </div>
+        </div>
+        <div class="features-section reveal">
+            <div class="section-header"><h2>Отзывы клиентов</h2><p>Честные мнения наших покупателей</p></div>
+            <div class="reviews-grid">
+                <div class="review-card"><div class="review-header"><div class="review-avatar">АК</div><div class="review-meta"><h4>Алексей К.</h4><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div><div class="review-text">Купил RASSOKHA ULTIMATE для работы с 3D. ПК пришёл через 2 дня, идеально упакован. Все компоненты оригинальные, сборка аккуратная. Рекомендую!</div></div>
+                <div class="review-card"><div class="review-header"><div class="review-avatar">МД</div><div class="review-meta"><h4>Марина Д.</h4><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div><div class="review-text">Заказывала для сына на день рождения. Поддержка помогла выбрать оптимальную конфигурацию под бюджет. Сын в восторге, Cyberpunk на ультрах летает!</div></div>
+                <div class="review-card"><div class="review-header"><div class="review-avatar">ИС</div><div class="review-meta"><h4>Игорь С.</h4><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div></div></div><div class="review-text">Вторая покупка в Рассоха. Первый ПК работает без нареканий 2 года. Обновился на RTX 4070 — разница ощутима. Спасибо за качество!</div></div>
+            </div>
+        </div>
+    </section>
+    <section id="catalog" class="page">
+        <div class="catalog-header"><h2>Доступные сборки</h2>
+            <div class="catalog-controls">
+                <div class="search-box"><i class="fas fa-search"></i><input type="text" id="search-input" placeholder="Поиск по названию..." oninput="debouncedSearch()"></div>
+                <button class="filter-btn" id="filter-btn" onclick="toggleFilters()"><i class="fas fa-filter"></i> Фильтры</button>
+                <select class="sort-select" id="sort-select" onchange="sortCatalog()"><option value="default">По умолчанию</option><option value="price-asc">Цена: по возрастанию</option><option value="price-desc">Цена: по убыванию</option><option value="name">По названию</option></select>
+            </div>
+        </div>
+        <div id="filters-panel" style="display:none;background:var(--surface);border-radius:16px;padding:20px;margin-bottom:25px;border:1px solid var(--border)">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px">
+                <div><label style="font-size:0.8rem;font-weight:600;margin-bottom:10px;display:block;opacity:0.7">Цена</label><div style="display:flex;gap:10px;align-items:center"><input type="number" id="price-min" placeholder="От" style="width:100px;margin-bottom:0"><span style="opacity:0.5">—</span><input type="number" id="price-max" placeholder="До" style="width:100px;margin-bottom:0"></div></div>
+                <div><label style="font-size:0.8rem;font-weight:600;margin-bottom:10px;display:block;opacity:0.7">Видеокарта</label><select id="filter-gpu" style="width:100%;margin-bottom:0"><option value="">Все</option><option value="RTX 3060">RTX 3060</option><option value="RTX 4060">RTX 4060</option><option value="RTX 4070">RTX 4070</option><option value="RTX 4080">RTX 4080</option><option value="RTX 4090">RTX 4090</option></select></div>
+                <div><label style="font-size:0.8rem;font-weight:600;margin-bottom:10px;display:block;opacity:0.7">Процессор</label><select id="filter-cpu" style="width:100%;margin-bottom:0"><option value="">Все</option><option value="Intel">Intel</option><option value="AMD">AMD</option></select></div>
+                <div><label style="font-size:0.8rem;font-weight:600;margin-bottom:10px;display:block;opacity:0.7">RAM</label><select id="filter-ram" style="width:100%;margin-bottom:0"><option value="">Все</option><option value="16GB">16 GB</option><option value="32GB">32 GB</option></select></div>
+            </div>
+            <div style="margin-top:15px;display:flex;gap:10px;justify-content:flex-end"><button class="btn-action btn-outline" style="padding:8px 16px;font-size:0.7rem" onclick="resetFilters()">Сбросить</button><button class="btn-action btn-cyan" style="padding:8px 16px;font-size:0.7rem" onclick="applyFilters()">Применить</button></div>
+        </div>
+        <div class="catalog-grid" id="main-grid"></div>
+        <div id="no-results" style="display:none;text-align:center;padding:60px;opacity:0.5"><i class="fas fa-search" style="font-size:3rem;margin-bottom:15px;display:block"></i><p>По вашему запросу ничего не найдено</p></div>
+    </section>
+    <section id="ideas" class="page">
+        <div class="form-container">
+            <div id="ideas-form">
+                <h2 style="color:var(--accent)">Предложить улучшение</h2><p>Мы читаем каждое сообщение и делаем сайт лучше для вас.</p>
+                <div class="form-group"><label>Ваше имя</label><input type="text" id="idea-name" placeholder="Как к вам обращаться?"></div>
+                <div class="form-group"><label>Контакт</label><input type="text" id="idea-contact" placeholder="Email или Telegram"></div>
+                <div class="form-group"><label>Ваша идея</label><textarea id="idea-text" placeholder="Опишите вашу идею подробно..."></textarea></div>
+                <button class="btn-action btn-cyan" style="width:100%" onclick="sendIdea()"><i class="fas fa-paper-plane"></i> Отправить предложение</button>
+            </div>
+            <div class="form-success" id="ideas-success"><i class="fas fa-check-circle"></i><h3>Спасибо за идею!</h3><p>Мы рассмотрим ваше предложение и свяжемся с вами при необходимости.</p><button class="btn-action btn-outline" onclick="resetIdeaForm()">Отправить ещё</button></div>
+        </div>
+    </section>
+    <section id="support" class="page">
+        <div class="form-container">
+            <div id="support-form">
+                <h2 style="color:var(--accent-orange)">Техподдержка</h2><p>Опишите проблему — мы ответим в течение часа.</p>
+                <div class="form-group"><label>Ваше имя</label><input type="text" id="support-name" placeholder="Ваше имя"></div>
+                <div class="form-group"><label>Контакт для связи</label><input type="text" id="support-contact" placeholder="Telegram или телефон"></div>
+                <div class="form-group"><label>Тема обращения</label><select id="support-topic" style="margin-bottom:0"><option value="">Выберите тему</option><option value="order">Вопрос по заказу</option><option value="tech">Техническая проблема</option><option value="config">Подбор конфигурации</option><option value="other">Другое</option></select></div>
+                <div class="form-group"><label>Описание</label><textarea id="support-text" placeholder="Опишите проблему или вопрос подробно..."></textarea></div>
+                <button class="btn-action btn-orange" style="width:100%" onclick="sendSupport()"><i class="fas fa-headset"></i> Связаться с мастером</button>
+            </div>
+            <div class="form-success" id="support-success"><i class="fas fa-check-circle"></i><h3>Заявка принята!</h3><p>Наш мастер свяжется с вами в ближайшее время.</p><button class="btn-action btn-outline" onclick="resetSupportForm()">Новое обращение</button></div>
+        </div>
+    </section>
+    <section id="cart" class="page">
+        <div style="max-width:800px;margin:0 auto">
+            <div class="cart-page-header"><h2>Ваша корзина</h2><p id="cart-subtitle">Тут пока тихо...</p></div>
+            <div id="cart-items-list"></div>
+            <div id="cart-empty" class="empty-cart" style="display:none"><i class="fas fa-shopping-basket"></i><h3>Корзина пуста</h3><p>Добавьте интересующие сборки из каталога</p><button class="btn-action btn-cyan" onclick="navigateTo('catalog')"><i class="fas fa-arrow-right"></i> Перейти в каталог</button></div>
+            <div id="cart-footer" style="display:none">
+                <div class="cart-summary">
+                    <div class="promo-input"><input type="text" id="promo-code" placeholder="Промокод (попробуйте: BEAST2024)"><button class="btn-action btn-outline" style="padding:12px 20px" onclick="applyPromo()">Применить</button></div>
+                    <div id="promo-message" style="font-size:0.8rem;margin-bottom:15px;display:none"></div>
+                    <div class="cart-summary-row"><span>Сумма товаров</span><span id="subtotal-sum">0 ₽</span></div>
+                    <div class="cart-summary-row" id="discount-row" style="display:none"><span>Скидка</span><span id="discount-sum" style="color:var(--accent-green)">0 ₽</span></div>
+                    <div class="cart-summary-row total"><span>Итого к оплате</span><span id="total-sum">0 ₽</span></div>
+                    <button class="btn-action btn-cyan" style="width:100%;margin-top:20px" onclick="checkout()"><i class="fas fa-credit-card"></i> Оформить заказ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="bottom-nav">
+        <button class="btn-tab active" onclick="navigateTo('home')" id="b-home"><i class="fas fa-home"></i></button>
+        <button class="btn-tab" onclick="navigateTo('catalog')" id="b-catalog"><i class="fas fa-box"></i></button>
+        <button class="btn-tab" onclick="navigateTo('ideas')" id="b-ideas"><i class="fas fa-lightbulb"></i></button>
+        <button class="btn-tab" onclick="navigateTo('support')" id="b-support"><i class="fas fa-headset"></i></button>
+        <button class="btn-tab" onclick="navigateTo('cart')" id="b-cart"><i class="fas fa-shopping-cart"></i><span class="badge" id="bottom-cart-badge" style="display:none">0</span></button>
+    </div>
+    <div class="modal" id="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-gallery"><img id="m-img" src="" alt=""><div class="modal-gallery-dots"><div class="gallery-dot active" onclick="changeGalleryImage(0)"></div><div class="gallery-dot" onclick="changeGalleryImage(1)"></div><div class="gallery-dot" onclick="changeGalleryImage(2)"></div></div></div>
+            <div class="modal-info">
+                <h2 id="m-title"></h2><div class="modal-subtitle" id="m-subtitle"></div>
+                <div class="modal-tabs"><button class="modal-tab active" onclick="switchTab('specs')">Характеристики</button><button class="modal-tab" onclick="switchTab('desc')">Описание</button><button class="modal-tab" onclick="switchTab('delivery')">Доставка</button></div>
+                <div class="modal-tab-content active" id="tab-specs"><div id="m-specs"></div></div>
+                <div class="modal-tab-content" id="tab-desc"><p style="line-height:1.8;opacity:0.8">Мощная игровая сборка на базе современных компонентов. Идеально подходит для игр в разрешении 1440p и 4K, стриминга, работы с графикой и видеомонтажа. Каждый ПК проходит стресс-тест перед отправкой и настраивается для максимальной производительности.</p><ul style="margin-top:15px;padding-left:20px;opacity:0.8;line-height:2"><li>Гарантия 2 года на все компоненты</li><li>Предустановлены все драйверы</li><li>Windows 11 Pro активирована</li><li>Игровая оптимизация BIOS</li></ul></div>
+                <div class="modal-tab-content" id="tab-delivery"><p style="line-height:1.8;opacity:0.8"><strong>Доставка по России:</strong><br>• СДЭК — от 1 до 5 дней, от 500 ₽<br>• Почта России — от 3 до 10 дней, от 350 ₽<br>• Самовывоз (Москва, СПб) — бесплатно<br><br><strong>Оплата:</strong><br>• Банковская карта<br>• СБП (Система быстрых платежей)<br>• Рассрочка 0-0-6 (Тинькофф, Сбер)</p></div>
+                <div class="modal-price"><span id="m-price"></span><span class="old" id="m-old-price" style="display:none"></span></div>
+                <div class="modal-actions"><button class="btn-action btn-purple" id="m-add-btn"><i class="fas fa-cart-plus"></i> В корзину</button><button class="btn-action btn-outline" onclick="closeModal()"><i class="fas fa-times"></i> Закрыть</button></div>
+            </div>
+        </div>
+    </div>
+    <script src="database.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
