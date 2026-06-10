@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>РАССОХА ПК | Магазин игровых компьютеров</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root{--accent:#00f2fe;--accent-purple:#9d50bb;--accent-orange:#ff9966;--accent-green:#00d9a3;--bg:#020406;--surface:#0c1016;--text:#fff;--text-secondary:#8892a0;--border:rgba(255,255,255,0.06);--transition:all 0.3s cubic-bezier(0.4,0,0.2,1);--shadow:0 10px 40px rgba(0,0,0,0.4)}
+        [data-theme="light"]{--bg:#f0f2f5;--surface:#fff;--text:#0f172a;--text-secondary:#64748b;--border:rgba(0,0,0,0.08);--shadow:0 10px 40px rgba(0,0,0,0.1)}
+        *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+        ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px}
+        .bg-overlay{position:fixed;inset:0;background:radial-gradient(circle at 10% 20%,rgba(0,242,254,0.04) 0%,transparent 50%),radial-gradient(circle at 90% 80%,rgba(157,80,187,0.04) 0%,transparent 50%);z-index:-1}
+        nav{position:fixed;top:0;width:100%;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(2,4,6,0.9);backdrop-filter:blur(20px);z-index:1000;border-bottom:1px solid var(--border)}
+        [data-theme="light"] nav{background:rgba(255,255,255,0.9)}
+        .logo{font-family:'Syncopate',sans-serif;font-size:clamp(0.9rem,2vw,1.2rem);color:var(--accent);cursor:pointer;letter-spacing:3px;font-weight:700;display:flex;align-items:center;gap:10px}
+        .logo i{font-size:1.4rem}
+        .nav-links{display:flex;gap:30px;list-style:none;align-items:center}
+        .nav-links li{font-size:0.75rem;font-weight:600;text-transform:uppercase;cursor:pointer;opacity:0.6;transition:var(--transition);letter-spacing:1px;position:relative}
+        .nav-links li::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--accent);transition:width 0.3s}
+        .nav-links li:hover,.nav-links li.active{opacity:1;color:var(--accent)}
+        .nav-links li:hover::after,.nav-links li.active::after{width:100%}
+        .nav-actions{display:flex;align-items:center;gap:15px}
+        .theme-toggle{background:none;border:1px solid var(--border);color:var(--text);width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);font-size:1rem}
+        .theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+        .btn-action{padding:12px 24px;border:none;border-radius:10px;font-weight:700;text-transform:uppercase;font-size:0.7rem;cursor:pointer;transition:var(--transition);letter-spacing:1px;display:inline-flex;align-items:center;gap:8px}
+        .btn-cyan{background:linear-gradient(135deg,#00f2fe,#4facfe);color:#000;box-shadow:0 4px 15px rgba(0,242,254,0.3)}
+        .btn-purple{background:linear-gradient(135deg,#9d50bb,#6e48aa);color:#fff;box-shadow:0 4px 15px rgba(157,80,187,0.3)}
+        .btn-orange{background:linear-gradient(135deg,#ff9966,#ff5e62);color:#fff;box-shadow:0 4px 15px rgba(255,94,98,0.3)}
+        .btn-green{background:linear-gradient(135deg,#00d9a3,#00b894);color:#000;box-shadow:0 4px 15px rgba(0,217,163,0.3)}
+        .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+        .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+        .btn-action:hover{transform:translateY(-2px);filter:brightness(1.15);box-shadow:0 8px 25px rgba(0,0,0,0.3)}
+        .page{display:none;padding:100px 5% 140px;animation:fadeIn 0.5s ease-out;max-width:1400px;margin:0 auto;min-height:100vh}
+        .page.active{display:block}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        .hero{min-height:85vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,242,254,0.1);border:1px solid rgba(0,242,254,0.2);padding:8px 20px;border-radius:50px;font-size:0.75rem;color:var(--accent);margin-bottom:30px;animation:slideUp 0.6s ease-out}
+        .hero-title{font-family:'Syncopate';font-size:clamp(2.5rem,8vw,5.5rem);margin-bottom:20px;line-height:1.1;animation:slideUp 0.7s ease-out 0.1s both}
+        .hero-title span{background:linear-gradient(135deg,var(--accent),var(--accent-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-desc{max-width:600px;opacity:0.7;margin-bottom:40px;font-size:1rem;line-height:1.8;animation:slideUp 0.8s ease-out 0.2s both}
+        .hero-buttons{display:flex;gap:15px;flex-wrap:wrap;justify-content:center;animation:slideUp 0.9s ease-out 0.3s both}
+        .hero-stats{display:flex;gap:50px;margin-top:60px;animation:slideUp 1s ease-out 0.4s both}
+        .stat-item{text-align:center}
+        .stat-value{font-family:'Syncopate';font-size:1.8rem;font-weight:700;color:var(--accent)}
+        .stat-label{font-size:0.75rem;opacity:0.5;text-transform:uppercase;letter-spacing:1px;margin-top:5px}
+        .features-section{padding:80px 0}
+        .section-header{text-align:center;margin-bottom:50px}
+        .section-header h2{font-family:'Syncopate';font-size:1.5rem;margin-bottom:10px}
+        .section-header p{opacity:0.6;font-size:0.9rem}
+        .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
+        .feature-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:30px;transition:var(--transition);text-align:center}
+        .feature-card:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:var(--shadow)}
+        .feature-icon{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.5rem}
+        .feature-card h3{font-size:1rem;margin-bottom:10px}
+        .feature-card p{font-size:0.85rem;opacity:0.6;line-height:1.6}
+        .catalog-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;flex-wrap:wrap;gap:15px}
+        .catalog-header h2{font-family:'Syncopate';font-size:1.3rem}
+        .catalog-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+        .search-box{position:relative}
+        .search-box input{padding:10px 15px 10px 40px;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);width:250px;font-size:0.85rem;transition:var(--transition)}
+        .search-box input:focus{border-color:var(--accent);outline:none;width:300px}
+        .search-box i{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:0.5;font-size:0.9rem}
+        .filter-btn{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:10px 18px;border-radius:10px;cursor:pointer;font-size:0.8rem;transition:var(--transition);display:flex;align-items:center;gap:8px}
+        .filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent)}
+        .sort-select{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:10px 15px;border-radius:10px;font-size:0.8rem;cursor:pointer}
+        .catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:25px}
+        .card{background:var(--surface);border-radius:16px;padding:0;border:1px solid var(--border);transition:var(--transition);display:flex;flex-direction:column;overflow:hidden;position:relative}
+        .card:hover{border-color:var(--accent);transform:translateY(-8px);box-shadow:var(--shadow)}
+        .card-badge{position:absolute;top:15px;left:15px;background:var(--accent);color:#000;padding:4px 12px;border-radius:6px;font-size:0.7rem;font-weight:700;text-transform:uppercase;z-index:2}
+        .card-badge.hot{background:#ff5e62;color:#fff}
+        .card-badge.new{background:var(--accent-green);color:#000}
+        .card-img-wrapper{position:relative;overflow:hidden}
+        .card img{width:100%;aspect-ratio:16/10;object-fit:cover;transition:transform 0.5s}
+        .card:hover img{transform:scale(1.05)}
+        .card-content{padding:20px;flex:1;display:flex;flex-direction:column}
+        .card h3{font-size:1rem;margin-bottom:8px;font-weight:700}
+        .card-specs{font-size:0.75rem;opacity:0.5;margin-bottom:15px;line-height:1.6}
+        .card-specs i{margin-right:5px;width:14px;display:inline-block}
+        .card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:15px;border-top:1px solid var(--border)}
+        .card .price{color:var(--accent);font-weight:800;font-size:1.2rem}
+        .card .price .old{text-decoration:line-through;opacity:0.4;font-size:0.85rem;margin-left:8px}
+        .card-actions{display:flex;gap:8px}
+        .card-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);font-size:0.9rem}
+        .card-btn:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+        .modal{position:fixed;inset:0;background:rgba(0,0,0,0.9);display:none;z-index:2000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(10px)}
+        .modal.active{display:flex;animation:fadeIn 0.3s}
+        .modal-content{background:var(--surface);width:100%;max-width:1000px;border-radius:24px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;max-height:90vh;box-shadow:var(--shadow);border:1px solid var(--border)}
+        .modal-gallery{position:relative;background:#000}
+        .modal-gallery img{width:100%;height:100%;object-fit:cover}
+        .modal-gallery-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
+        .gallery-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;transition:var(--transition)}
+        .gallery-dot.active{background:var(--accent)}
+        .modal-info{padding:35px;display:flex;flex-direction:column;overflow-y:auto}
+        .modal-info h2{font-family:'Syncopate';color:var(--accent);margin-bottom:5px;font-size:1.2rem}
+        .modal-subtitle{font-size:0.8rem;opacity:0.5;margin-bottom:25px}
+        .modal-tabs{display:flex;gap:5px;margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:10px}
+        .modal-tab{background:none;border:none;color:var(--text-secondary);padding:8px 16px;cursor:pointer;font-size:0.8rem;font-weight:600;border-radius:8px;transition:var(--transition)}
+        .modal-tab:hover,.modal-tab.active{color:var(--accent);background:rgba(0,242,254,0.1)}
+        .modal-tab-content{display:none;font-size:0.85rem;line-height:2}
+        .modal-tab-content.active{display:block}
+        .spec-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)}
+        .spec-row:last-child{border-bottom:none}
+        .spec-label{opacity:0.6}
+        .spec-value{font-weight:600}
+        .modal-price{font-size:1.8rem;font-weight:800;margin:25px 0;display:flex;align-items:center;gap:15px}
+        .modal-price .old{font-size:1.1rem;opacity:0.4;text-decoration:line-through}
+        .modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:auto}
+        .cart-dropdown{position:absolute;top:60px;right:5%;width:380px;background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);z-index:1001;display:none;overflow:hidden}
+        .cart-dropdown.active{display:block;animation:slideUp 0.3s}
+        .cart-dropdown-header{padding:20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+        .cart-dropdown-header h3{font-size:1rem}
+        .cart-dropdown-items{max-height:300px;overflow-y:auto;padding:15px}
+        .cart-dropdown-item{display:flex;gap:12px;padding:12px;border-radius:10px;margin-bottom:8px;background:rgba(255,255,255,0.02);align-items:center}
+        .cart-dropdown-item img{width:50px;height:50px;border-radius:8px;object-fit:cover}
+        .cart-dropdown-item-info{flex:1}
+        .cart-dropdown-item-info .name{font-size:0.8rem;font-weight:600;margin-bottom:4px}
+        .cart-dropdown-item-info .price{font-size:0.8rem;color:var(--accent)}
+        .cart-qty-control{display:flex;align-items:center;gap:8px}
+        .cart-qty-btn{width:24px;height:24px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.8rem;transition:var(--transition)}
+        .cart-qty-btn:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+        .cart-dropdown-footer{padding:20px;border-top:1px solid var(--border)}
+        .cart-dropdown-total{display:flex;justify-content:space-between;margin-bottom:15px;font-size:1rem;font-weight:700}
+        .cart-dropdown-total span:last-child{color:var(--accent)}
+        .cart-page-header{margin-bottom:30px}
+        .cart-page-header h2{font-family:'Syncopate';font-size:1.3rem;margin-bottom:5px}
+        .cart-page-header p{opacity:0.5;font-size:0.85rem}
+        .cart-item{display:flex;gap:20px;background:var(--surface);padding:20px;border-radius:16px;margin-bottom:15px;align-items:center;border:1px solid var(--border);transition:var(--transition)}
+        .cart-item:hover{border-color:rgba(0,242,254,0.2)}
+        .cart-item img{width:80px;height:80px;border-radius:12px;object-fit:cover}
+        .cart-item-info{flex:1}
+        .cart-item-info .name{font-weight:700;font-size:1rem;margin-bottom:5px}
+        .cart-item-info .specs{font-size:0.75rem;opacity:0.5;margin-bottom:8px}
+        .cart-item-info .price{color:var(--accent);font-size:1rem;font-weight:700}
+        .cart-item-controls{display:flex;align-items:center;gap:15px}
+        .cart-item-qty{display:flex;align-items:center;gap:10px;background:var(--bg);padding:5px;border-radius:10px}
+        .cart-item-qty button{width:32px;height:32px;border-radius:8px;border:none;background:var(--surface);color:var(--text);cursor:pointer;font-size:1rem;transition:var(--transition)}
+        .cart-item-qty button:hover{background:var(--accent);color:#000}
+        .cart-item-qty span{min-width:30px;text-align:center;font-weight:600}
+        .cart-item-remove{background:none;border:none;color:#ff5e62;cursor:pointer;padding:10px;font-size:1.1rem;transition:var(--transition);border-radius:8px}
+        .cart-item-remove:hover{background:rgba(255,94,98,0.1)}
+        .cart-summary{background:var(--surface);border-radius:16px;padding:25px;border:1px solid var(--border);margin-top:30px}
+        .cart-summary-row{display:flex;justify-content:space-between;padding:10px 0;font-size:0.9rem}
+        .cart-summary-row.total{border-top:1px solid var(--border);margin-top:10px;padding-top:15px;font-size:1.2rem;font-weight:800}
+        .cart-summary-row.total span:last-child{color:var(--accent)}
+        .promo-input{display:flex;gap:10px;margin:20px 0}
+        .promo-input input{flex:1;margin-bottom:0}
+        .empty-cart{text-align:center;padding:80px 20px;opacity:0.5}
+        .empty-cart i{font-size:4rem;margin-bottom:20px;opacity:0.3}
+        .empty-cart h3{font-size:1.2rem;margin-bottom:10px}
+        .empty-cart p{font-size:0.9rem;margin-bottom:25px}
+        .form-container{max-width:550px;margin:0 auto;background:var(--surface);padding:40px;border-radius:24px;border:1px solid var(--border)}
+        .form-container h2{margin-bottom:8px;font-family:'Syncopate';font-size:1.3rem}
+        .form-container>p{font-size:0.85rem;opacity:0.6;margin-bottom:30px}
+        .form-group{margin-bottom:20px}
+        .form-group label{display:block;font-size:0.8rem;font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;opacity:0.7}
+        input,textarea{width:100%;padding:14px 16px;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:12px;margin-bottom:0;outline:none;font-size:0.9rem;font-family:'Inter',sans-serif;transition:var(--transition)}
+        input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,242,254,0.1)}
+        textarea{resize:vertical;min-height:120px}
+        .form-success{display:none;text-align:center;padding:40px}
+        .form-success i{font-size:4rem;color:var(--accent-green);margin-bottom:20px}
+        .form-success h3{font-size:1.3rem;margin-bottom:10px}
+        .form-success p{opacity:0.6;margin-bottom:25px}
+        .bottom-nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(12,16,22,0.85);backdrop-filter:blur(25px);padding:10px 20px;border-radius:50px;display:flex;gap:8px;border:1px solid var(--border);z-index:1001;box-shadow:var(--shadow)}
+        [data-theme="light"] .bottom-nav{background:rgba(255,255,255,0.9)}
+        .btn-tab{background:none;border:none;color:var(--text-secondary);width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.1rem;transition:var(--transition);display:flex;align-items:center;justify-content:center;position:relative}
+        .btn-tab:hover{color:var(--accent);background:rgba(0,242,254,0.1)}
+        .btn-tab.active{color:var(--accent);background:rgba(0,242,254,0.15)}
+        .btn-tab .badge{position:absolute;top:2px;right:2px;background:var(--accent-orange);color:#fff;font-size:0.6rem;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
+        .toast-container{position:fixed;top:80px;right:20px;z-index:3000;display:flex;flex-direction:column;gap:10px}
+        .toast{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:15px 20px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow);animation:slideInRight 0.3s ease-out;min-width:300px}
+        @keyframes slideInRight{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+        .toast.success{border-left:3px solid var(--accent-green)}
+        .toast.error{border-left:3px solid #ff5e62}
+        .toast.info{border-left:3px solid var(--accent)}
+        .toast i{font-size:1.2rem}
+        .toast.success i{color:var(--accent-green)}
+        .toast.error i{color:#ff5e62}
+        .toast.info i{color:var(--accent)}
+        .toast-content{flex:1}
+        .toast-title{font-weight:700;font-size:0.9rem;margin-bottom:2px}
+        .toast-message{font-size:0.8rem;opacity:0.7}
+        .toast-close{background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:1rem;padding:5px}
+        .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;margin-top:40px}
+        .review-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:25px;transition:var(--transition)}
+        .review-card:hover{transform:translateY(-3px);border-color:var(--accent)}
+        .review-header{display:flex;align-items:center;gap:12px;margin-bottom:15px}
+        .review-avatar{width:45px;height:45px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-purple));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem}
+        .review-meta h4{font-size:0.9rem;margin-bottom:2px}
+        .review-meta .stars{color:#ffc107;font-size:0.8rem}
+        .review-text{font-size:0.85rem;opacity:0.8;line-height:1.7}
+        @media(max-width:850px){.nav-links,nav .btn-cyan{display:none}.modal-content{grid-template-columns:1fr}.modal-gallery{height:250px}.catalog-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:15px}.card h3{font-size:0.85rem}.hero-stats{gap:25px}.stat-value{font-size:1.3rem}.features-grid{grid-template-columns:1fr}.cart-dropdown{width:calc(100vw - 40px);right:20px}.form-container{padding:25px}.modal-actions{grid-template-columns:1fr}}
+        @media(max-width:480px){.catalog-grid{grid-template-columns:1fr}.hero-title{font-size:2rem!important}.bottom-nav{padding:8px 15px}.btn-tab{width:42px;height:42px;font-size:1rem}}
+        .reveal{opacity:0;transform:translateY(30px);transition:all 0.6s ease-out}
+        .reveal.active{opacity:1;transform:translateY(0)}
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="bg-overlay"></div>
+    <div class="toast-container" id="toast-container"></div>
+    <nav>
+        <div class="logo" onclick="navigateTo('home')"><i class="fas fa-microchip"></i> РАССОХА ПК</div>
+        <ul class="nav-links">
+            <li onclick="navigateTo('home')" id="n-home">Главная</li>
+            <li onclick="navigateTo('catalog')" id="n-catalog">Каталог</li>
+            <li onclick="navigateTo('ideas')" id="n-ideas">Идеи</li>
+            <li onclick="navigateTo('support')" id="n-support">Поддержка</li>
+            <li onclick="toggleCartDropdown()" id="n-cart" style="position:relative">Корзина (<span id="cart-count">0</span>)</li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" title="Сменить тему"><i class="fas fa-moon" id="theme-icon"></i></button>
+            <button class="btn-action btn-cyan" onclick="navigateTo('catalog')"><i class="fas fa-shopping-cart"></i> Купить ПК</button>
+        </div>
+    </nav>
+    <div class="cart-dropdown" id="cart-dropdown">
+        <div class="cart-dropdown-header"><h3>Корзина</h3><span style="opacity:0.5;font-size:0.8rem" id="cart-dropdown-count">0 товаров</span></div>
+        <div class="cart-dropdown-items" id="cart-dropdown-items"></div>
+        <div class="cart-dropdown-footer" id="cart-dropdown-footer" style="display:none">
+            <div class="cart-dropdown-total"><span>Итого:</span><span id="cart-dropdown-total">0 ₽</span></div>
+            <button class="btn-action btn-cyan" style="width:100%" onclick="navigateTo('cart');closeCartDropdown()">Оформить заказ</button>
+        </div>
+    </div>
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="hero-badge"><i class="fas fa-fire"></i> Более 500 довольных клиентов</div>
+            <h1 class="hero-title">ИМСИТ</h1>
+            <p class="hero-desc">Создаем мощные игровые системы с 2024 года. Каждый ПК — это произведение инженерного искусства, собранное с любовью к деталям и тестированное под нагрузкой.</p>
+            <div class="hero-buttons">
+                <button class="btn-action btn-purple" onclick="navigateTo('catalog')"><i class="fas fa-rocket"></i> В каталог</button>
+                <button class="btn-action btn-outline" onclick="navigateTo('support')"><i class="fas fa-headset"></i> Помощь</button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item"><div class="stat-value">500+</div><div class="stat-label">Сборок</div></div>
+                <div class="stat-item"><div class="stat-value">3</div><div class="stat-label">Года опыта</div></div>
+                <div class="stat-item"><div class="stat-value">24/7</div><div class="stat-label">Поддержка</div></div>
+                <div class="stat-item"><div class="stat-value">2</div><div class="stat-label">Года гарантии</div></div>
+            </div>
+        </div>
+        <div class="features-section reveal">
+            <div class="section-header"><h2>Почему выбирают нас</h2><p>Мы делаем всё, чтобы ваш gaming experience был безупречен</p></div>
+            <div class="features-grid">
+                <div class="feature-card"><div class="feature-icon" style="background:rgba(0,242,254,0.1);color:var(--accent)"><i class="fas fa-shield-alt"></i></div><h3>Гарантия 2 года</h3><p>Полное покрытие всех компонентов. Быстрый обмен без лишних вопросов.</p></div>
+                <div class="feature-card"><div class="feature-icon" style="background:rgba(157,80,187,0.1);color:var(--accent-purple)"><i class="fas fa-truck"></i></div><h3>Доставка по РФ</h3><p>Безопасная упаковка и доставка в любую точку России от 1 дня.</p></div>
+                <div class="feature-card"><div class="feature-icon" style="background:rgba(255,153,102,0.1);color:var(--accent-orange)"><i class="fas fa-tools"></i></div><h3>Сборка под заказ</h3><p>Измените любой компонент под свои задачи. Индивидуальный подход.</p></div>
+                <div class="feature-card"><div class="feature-icon" style="background:rgba(0,217,163,0.1);color:var(--accent-green)"><i class="fas fa-vial"></i></div><h3>Стресс-тест</h3><p>Каждый ПК проходит 24-часовое тестирование перед отправкой.</p></div>
+            </div>
+        </div>
+        <div class="features-section reveal">
+            <div class="section-header"><h2>Отзывы клиентов</h2><p>Честные мнения наших покупателей</p></div>
+            <div class="reviews-grid">
+                <div class="review-card"><div class="review-header"><div class="review-avatar">АК</div><div class="review-meta"><h4>Алексей К.</h4><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div><div class="review-text">Купил RASSOKHA ULTIMATE для работы с 3D. ПК пришёл через 2 дня, идеально упакован. Все компоненты оригинальные, сборка аккуратная. Рекомендую!</div></div>
+                <div class="review-card"><div class="review-header"><div class="review-avatar">МД</div><div class="review-meta"><h4>Марина Д.</h4><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div><div class="review-text">Заказывала для сына на день рождения. Поддержка помогла выбрать оптимальную конфигурацию под бюджет. Сын в восторге, Cyberpunk на ультрах летает!</div></div>
+                <div class="review-card"><div class="review-header"><div class="review-avatar">ИС</div><div class="review-meta"><h4>Игорь С.</h4><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div></div></div><div class="review-text">Вторая покупка в Рассоха. Первый ПК работает без нареканий 2 года. Обновился на RTX 4070 — разница ощутима. Спасибо за качество!</div></div>
+            </div>
+        </div>
+    </section>
+    <section id="catalog" class="page">
+        <div class="catalog-header"><h2>Доступные сборки</h2>
+            <div class="catalog-controls">
+                <div class="search-box"><i class="fas fa-search"></i><input type="text" id="search-input" placeholder="Поиск по названию..." oninput="debouncedSearch()"></div>
+                <button class="filter-btn" id="filter-btn" onclick="toggleFilters()"><i class="fas fa-filter"></i> Фильтры</button>
+                <select class="sort-select" id="sort-select" onchange="sortCatalog()"><option value="default">По умолчанию</option><option value="price-asc">Цена: по возрастанию</option><option value="price-desc">Цена: по убыванию</option><option value="name">По названию</option></select>
+            </div>
+        </div>
+        <div id="filters-panel" style="display:none;background:var(--surface);border-radius:16px;padding:20px;margin-bottom:25px;border:1px solid var(--border)">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px">
+                <div><label style="font-size:0.8rem;font-weight:600;margin-bottom:10px;display:block;opacity:0.7">Цена</label><div style="display:flex;gap:10px;align-items:center"><input type="number" id="price-min" placeholder="От" style="width:100px;margin-bottom:0"><span style="opacity:0.5">—</span><input type="number" id="price-max" placeholder="До" style="width:100px;margin-bottom:0"></div></div>
+                <div><label style="font-size:0.8rem;font-weight:600;margin-bottom:10px;display:block;opacity:0.7">Видеокарта</label><select id="filter-gpu" style="width:100%;margin-bottom:0"><option value="">Все</option><option value="RTX 3060">RTX 3060</option><option value="RTX 4060">RTX 4060</option><option value="RTX 4070">RTX 4070</option><option value="RTX 4080">RTX 4080</option><option value="RTX 4090">RTX 4090</option></select></div>
+                <div><label style="font-size:0.8rem;font-weight:600;margin-bottom:10px;display:block;opacity:0.7">Процессор</label><select id="filter-cpu" style="width:100%;margin-bottom:0"><option value="">Все</option><option value="Intel">Intel</option><option value="AMD">AMD</option></select></div>
+                <div><label style="font-size:0.8rem;font-weight:600;margin-bottom:10px;display:block;opacity:0.7">RAM</label><select id="filter-ram" style="width:100%;margin-bottom:0"><option value="">Все</option><option value="16GB">16 GB</option><option value="32GB">32 GB</option></select></div>
+            </div>
+            <div style="margin-top:15px;display:flex;gap:10px;justify-content:flex-end"><button class="btn-action btn-outline" style="padding:8px 16px;font-size:0.7rem" onclick="resetFilters()">Сбросить</button><button class="btn-action btn-cyan" style="padding:8px 16px;font-size:0.7rem" onclick="applyFilters()">Применить</button></div>
+        </div>
+        <div class="catalog-grid" id="main-grid"></div>
+        <div id="no-results" style="display:none;text-align:center;padding:60px;opacity:0.5"><i class="fas fa-search" style="font-size:3rem;margin-bottom:15px;display:block"></i><p>По вашему запросу ничего не найдено</p></div>
+    </section>
+    <section id="ideas" class="page">
+        <div class="form-container">
+            <div id="ideas-form">
+                <h2 style="color:var(--accent)">Предложить улучшение</h2><p>Мы читаем каждое сообщение и делаем сайт лучше для вас.</p>
+                <div class="form-group"><label>Ваше имя</label><input type="text" id="idea-name" placeholder="Как к вам обращаться?"></div>
+                <div class="form-group"><label>Контакт</label><input type="text" id="idea-contact" placeholder="Email или Telegram"></div>
+                <div class="form-group"><label>Ваша идея</label><textarea id="idea-text" placeholder="Опишите вашу идею подробно..."></textarea></div>
+                <button class="btn-action btn-cyan" style="width:100%" onclick="sendIdea()"><i class="fas fa-paper-plane"></i> Отправить предложение</button>
+            </div>
+            <div class="form-success" id="ideas-success"><i class="fas fa-check-circle"></i><h3>Спасибо за идею!</h3><p>Мы рассмотрим ваше предложение и свяжемся с вами при необходимости.</p><button class="btn-action btn-outline" onclick="resetIdeaForm()">Отправить ещё</button></div>
+        </div>
+    </section>
+    <section id="support" class="page">
+        <div class="form-container">
+            <div id="support-form">
+                <h2 style="color:var(--accent-orange)">Техподдержка</h2><p>Опишите проблему — мы ответим в течение часа.</p>
+                <div class="form-group"><label>Ваше имя</label><input type="text" id="support-name" placeholder="Ваше имя"></div>
+                <div class="form-group"><label>Контакт для связи</label><input type="text" id="support-contact" placeholder="Telegram или телефон"></div>
+                <div class="form-group"><label>Тема обращения</label><select id="support-topic" style="margin-bottom:0"><option value="">Выберите тему</option><option value="order">Вопрос по заказу</option><option value="tech">Техническая проблема</option><option value="config">Подбор конфигурации</option><option value="other">Другое</option></select></div>
+                <div class="form-group"><label>Описание</label><textarea id="support-text" placeholder="Опишите проблему или вопрос подробно..."></textarea></div>
+                <button class="btn-action btn-orange" style="width:100%" onclick="sendSupport()"><i class="fas fa-headset"></i> Связаться с мастером</button>
+            </div>
+            <div class="form-success" id="support-success"><i class="fas fa-check-circle"></i><h3>Заявка принята!</h3><p>Наш мастер свяжется с вами в ближайшее время.</p><button class="btn-action btn-outline" onclick="resetSupportForm()">Новое обращение</button></div>
+        </div>
+    </section>
+    <section id="cart" class="page">
+        <div style="max-width:800px;margin:0 auto">
+            <div class="cart-page-header"><h2>Ваша корзина</h2><p id="cart-subtitle">Тут пока тихо...</p></div>
+            <div id="cart-items-list"></div>
+            <div id="cart-empty" class="empty-cart" style="display:none"><i class="fas fa-shopping-basket"></i><h3>Корзина пуста</h3><p>Добавьте интересующие сборки из каталога</p><button class="btn-action btn-cyan" onclick="navigateTo('catalog')"><i class="fas fa-arrow-right"></i> Перейти в каталог</button></div>
+            <div id="cart-footer" style="display:none">
+                <div class="cart-summary">
+                    <div class="promo-input"><input type="text" id="promo-code" placeholder="Промокод (попробуйте: BEAST2024)"><button class="btn-action btn-outline" style="padding:12px 20px" onclick="applyPromo()">Применить</button></div>
+                    <div id="promo-message" style="font-size:0.8rem;margin-bottom:15px;display:none"></div>
+                    <div class="cart-summary-row"><span>Сумма товаров</span><span id="subtotal-sum">0 ₽</span></div>
+                    <div class="cart-summary-row" id="discount-row" style="display:none"><span>Скидка</span><span id="discount-sum" style="color:var(--accent-green)">0 ₽</span></div>
+                    <div class="cart-summary-row total"><span>Итого к оплате</span><span id="total-sum">0 ₽</span></div>
+                    <button class="btn-action btn-cyan" style="width:100%;margin-top:20px" onclick="checkout()"><i class="fas fa-credit-card"></i> Оформить заказ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="bottom-nav">
+        <button class="btn-tab active" onclick="navigateTo('home')" id="b-home"><i class="fas fa-home"></i></button>
+        <button class="btn-tab" onclick="navigateTo('catalog')" id="b-catalog"><i class="fas fa-box"></i></button>
+        <button class="btn-tab" onclick="navigateTo('ideas')" id="b-ideas"><i class="fas fa-lightbulb"></i></button>
+        <button class="btn-tab" onclick="navigateTo('support')" id="b-support"><i class="fas fa-headset"></i></button>
+        <button class="btn-tab" onclick="navigateTo('cart')" id="b-cart"><i class="fas fa-shopping-cart"></i><span class="badge" id="bottom-cart-badge" style="display:none">0</span></button>
+    </div>
+    <div class="modal" id="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-gallery"><img id="m-img" src="" alt=""><div class="modal-gallery-dots"><div class="gallery-dot active" onclick="changeGalleryImage(0)"></div><div class="gallery-dot" onclick="changeGalleryImage(1)"></div><div class="gallery-dot" onclick="changeGalleryImage(2)"></div></div></div>
+            <div class="modal-info">
+                <h2 id="m-title"></h2><div class="modal-subtitle" id="m-subtitle"></div>
+                <div class="modal-tabs"><button class="modal-tab active" onclick="switchTab('specs')">Характеристики</button><button class="modal-tab" onclick="switchTab('desc')">Описание</button><button class="modal-tab" onclick="switchTab('delivery')">Доставка</button></div>
+                <div class="modal-tab-content active" id="tab-specs"><div id="m-specs"></div></div>
+                <div class="modal-tab-content" id="tab-desc"><p style="line-height:1.8;opacity:0.8">Мощная игровая сборка на базе современных компонентов. Идеально подходит для игр в разрешении 1440p и 4K, стриминга, работы с графикой и видеомонтажа. Каждый ПК проходит стресс-тест перед отправкой и настраивается для максимальной производительности.</p><ul style="margin-top:15px;padding-left:20px;opacity:0.8;line-height:2"><li>Гарантия 2 года на все компоненты</li><li>Предустановлены все драйверы</li><li>Windows 11 Pro активирована</li><li>Игровая оптимизация BIOS</li></ul></div>
+                <div class="modal-tab-content" id="tab-delivery"><p style="line-height:1.8;opacity:0.8"><strong>Доставка по России:</strong><br>• СДЭК — от 1 до 5 дней, от 500 ₽<br>• Почта России — от 3 до 10 дней, от 350 ₽<br>• Самовывоз (Москва, СПб) — бесплатно<br><br><strong>Оплата:</strong><br>• Банковская карта<br>• СБП (Система быстрых платежей)<br>• Рассрочка 0-0-6 (Тинькофф, Сбер)</p></div>
+                <div class="modal-price"><span id="m-price"></span><span class="old" id="m-old-price" style="display:none"></span></div>
+                <div class="modal-actions"><button class="btn-action btn-purple" id="m-add-btn"><i class="fas fa-cart-plus"></i> В корзину</button><button class="btn-action btn-outline" onclick="closeModal()"><i class="fas fa-times"></i> Закрыть</button></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const gpuData=["RTX 3060 12GB","RTX 4060 Ti 8GB","RTX 4070 Super 12GB","RTX 4080 16GB","RTX 4090 24GB"];
+        const cpuData=["Intel Core i5-12400F","AMD Ryzen 5 7500F","Intel Core i7-14700K","AMD Ryzen 7 7800X3D","Intel Core i9-14900K"];
+        const boardData=["B760M Gaming","B650 Carbon WiFi","Z790 Steel Legend","X670E Taichi","Z790 Maximus Hero"];
+        const ramData=["16GB DDR4 3200MHz","32GB DDR5 6000MHz"];
+        const ssdData=["1TB NVMe Gen4","2TB NVMe Gen4"];
+        const pcNames=["RASSOKHA START","RASSOKHA ECO","RASSOKHA BASE","RASSOKHA PRO","RASSOKHA ELITE","RASSOKHA GAMER","RASSOKHA STREAM","RASSOKHA WORK","RASSOKHA ULTRA","RASSOKHA MAX","RASSOKHA NEO","RASSOKHA PRIME","RASSOKHA CORE","RASSOKHA TITAN","RASSOKHA BEAST","RASSOKHA LEGEND","RASSOKHA HERO","RASSOKHA MASTER","RASSOKHA KING","RASSOKHA GOD","RASSOKHA LITE","RASSOKHA PLUS","RASSOKHA SUPER","RASSOKHA HYPER","RASSOKHA ULTIMATE"];
+        const models=[];
+        for(let i=0;i<25;i++){const level=Math.floor(i/5);const hasDiscount=i%3===0;models.push({id:i+1,name:pcNames[i],price:55000+(i*8500)+(level*5000),oldPrice:hasDiscount?Math.floor((55000+(i*8500)+(level*5000))*1.15):null,img:`https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=${i}`,badge:i>=20?"new":i>=15&&i<20?"hot":null,specs:{cpu:cpuData[level],gpu:gpuData[level],ram:i>12?ramData[1]:ramData[0],board:boardData[level],ssd:i>15?ssdData[1]:ssdData[0],psu:(650+(level*150))+"W 80+ Gold",case:["Deepcool MATREXX","NZXT H5 Flow","Fractal Design Meshify","Lian Li O11","Corsair 7000D"][level],cooler:["ID-Cooling SE-214","Deepcool AK400","be quiet! Dark Rock 4","NZXT Kraken X63","Corsair H150i"][level]}})}
+        let cart=JSON.parse(localStorage.getItem('rassokha_cart'))||[];
+        let currentFilter={};
+        let currentSort='default';
+        let searchQuery='';
+        let promoApplied=null;
+        let history=['home'];
+        document.addEventListener('DOMContentLoaded',()=>{renderCatalog();updateCartBadge();initScrollReveal();initTheme()});
+        function initTheme(){const saved=localStorage.getItem('rassokha_theme');if(saved){document.documentElement.setAttribute('data-theme',saved);document.getElementById('theme-icon').className=saved==='light'?'fas fa-sun':'fas fa-moon'}}
+        function toggleTheme(){const current=document.documentElement.getAttribute('data-theme');const next=current==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',next);localStorage.setItem('rassokha_theme',next);document.getElementById('theme-icon').className=next==='light'?'fas fa-sun':'fas fa-moon'}
+        function navigateTo(id){if(history[history.length-1]!==id)history.push(id);document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-links li').forEach(l=>l.classList.remove('active'));document.querySelectorAll('.btn-tab').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');if(document.getElementById('n-'+id))document.getElementById('n-'+id).classList.add('active');if(document.getElementById('b-'+id))document.getElementById('b-'+id).classList.add('active');if(id==='cart')renderCart();window.scrollTo({top:0,behavior:'smooth'})}
+        function renderCatalog(){const grid=document.getElementById('main-grid');let filtered=models.filter(m=>{if(searchQuery&&!m.name.toLowerCase().includes(searchQuery.toLowerCase()))return false;if(currentFilter.minPrice&&m.price<currentFilter.minPrice)return false;if(currentFilter.maxPrice&&m.price>currentFilter.maxPrice)return false;if(currentFilter.gpu&&!m.specs.gpu.includes(currentFilter.gpu))return false;if(currentFilter.cpu&&!m.specs.cpu.includes(currentFilter.cpu))return false;if(currentFilter.ram&&!m.specs.ram.includes(currentFilter.ram))return false;return true});if(currentSort==='price-asc')filtered.sort((a,b)=>a.price-b.price);else if(currentSort==='price-desc')filtered.sort((a,b)=>b.price-a.price);else if(currentSort==='name')filtered.sort((a,b)=>a.name.localeCompare(b.name));document.getElementById('no-results').style.display=filtered.length===0?'block':'none';grid.innerHTML=filtered.map(m=>`<div class="card" onclick="openModal(${m.id})">${m.badge?`<div class="card-badge ${m.badge}">${m.badge==='new'?'NEW':'HOT'}</div>`:''}<div class="card-img-wrapper"><img src="${m.img}" alt="${m.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/500x300?text=${m.name}'"></div><div class="card-content"><h3>${m.name}</h3><div class="card-specs"><div><i class="fas fa-microchip"></i>${m.specs.cpu}</div><div><i class="fas fa-tv"></i>${m.specs.gpu}</div><div><i class="fas fa-memory"></i>${m.specs.ram}</div></div><div class="card-footer"><div class="price">${m.price.toLocaleString()} ₽${m.oldPrice?`<span class="old">${m.oldPrice.toLocaleString()} ₽</span>`:''}</div><div class="card-actions"><button class="card-btn" onclick="event.stopPropagation();addToCart(${m.id})" title="В корзину"><i class="fas fa-cart-plus"></i></button></div></div></div></div>`).join('')}
+        let searchTimeout;function debouncedSearch(){clearTimeout(searchTimeout);searchTimeout=setTimeout(()=>{searchQuery=document.getElementById('search-input').value;renderCatalog()},300)}
+        function toggleFilters(){const panel=document.getElementById('filters-panel');const btn=document.getElementById('filter-btn');panel.style.display=panel.style.display==='none'?'block':'none';btn.classList.toggle('active')}
+        function applyFilters(){currentFilter={minPrice:document.getElementById('price-min').value||null,maxPrice:document.getElementById('price-max').value||null,gpu:document.getElementById('filter-gpu').value||null,cpu:document.getElementById('filter-cpu').value||null,ram:document.getElementById('filter-ram').value||null};renderCatalog();showToast('info','Фильтры применены',`Найдено: ${document.querySelectorAll('.card').length} товаров`)}
+        function resetFilters(){document.getElementById('price-min').value='';document.getElementById('price-max').value='';document.getElementById('filter-gpu').value='';document.getElementById('filter-cpu').value='';document.getElementById('filter-ram').value='';currentFilter={};renderCatalog()}
+        function sortCatalog(){currentSort=document.getElementById('sort-select').value;renderCatalog()}
+        function openModal(id){const m=models.find(x=>x.id===id);const btn=document.getElementById('m-add-btn');document.getElementById('m-img').src=m.img;document.getElementById('m-title').innerText=m.name;document.getElementById('m-subtitle').innerText=`${m.specs.cpu} + ${m.specs.gpu}`;document.getElementById('m-price').innerText=m.price.toLocaleString()+" ₽";const oldPriceEl=document.getElementById('m-old-price');if(m.oldPrice){oldPriceEl.innerText=m.oldPrice.toLocaleString()+" ₽";oldPriceEl.style.display='inline'}else{oldPriceEl.style.display='none'}document.getElementById('m-specs').innerHTML=`<div class="spec-row"><span class="spec-label">Процессор</span><span class="spec-value">${m.specs.cpu}</span></div><div class="spec-row"><span class="spec-label">Видеокарта</span><span class="spec-value">${m.specs.gpu}</span></div><div class="spec-row"><span class="spec-label">Оперативная память</span><span class="spec-value">${m.specs.ram}</span></div><div class="spec-row"><span class="spec-label">Материнская плата</span><span class="spec-value">${m.specs.board}</span></div><div class="spec-row"><span class="spec-label">Накопитель</span><span class="spec-value">${m.specs.ssd}</span></div><div class="spec-row"><span class="spec-label">Блок питания</span><span class="spec-value">${m.specs.psu}</span></div><div class="spec-row"><span class="spec-label">Корпус</span><span class="spec-value">${m.specs.case}</span></div><div class="spec-row"><span class="spec-label">Охлаждение</span><span class="spec-value">${m.specs.cooler}</span></div>`;btn.innerHTML='<i class="fas fa-cart-plus"></i> В корзину';btn.classList.remove('btn-green');btn.classList.add('btn-purple');btn.onclick=()=>{addToCart(m.id);btn.innerHTML='<i class="fas fa-check"></i> Добавлено!';btn.classList.remove('btn-purple');btn.classList.add('btn-green');setTimeout(()=>{closeModal();setTimeout(()=>{btn.innerHTML='<i class="fas fa-cart-plus"></i> В корзину';btn.classList.add('btn-purple');btn.classList.remove('btn-green')},300)},800)};document.getElementById('modal').classList.add('active');document.body.style.overflow='hidden'}
+        function closeModal(){document.getElementById('modal').classList.remove('active');document.body.style.overflow=''}
+        function switchTab(tab){document.querySelectorAll('.modal-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.modal-tab-content').forEach(t=>t.classList.remove('active'));event.target.classList.add('active');document.getElementById('tab-'+tab).classList.add('active')}
+        function changeGalleryImage(idx){document.querySelectorAll('.gallery-dot').forEach((d,i)=>d.classList.toggle('active',i===idx))}
+        function addToCart(id){const item=models.find(x=>x.id===id);const existing=cart.find(x=>x.id===id);if(existing){existing.qty=(existing.qty||1)+1}else{cart.push({...item,qty:1})}saveCart();updateCartBadge();showToast('success','Добавлено в корзину',`${item.name}`)}
+        function removeFromCart(idx){const item=cart[idx];cart.splice(idx,1);saveCart();updateCartBadge();renderCart();showToast('info','Удалено из корзины',item.name)}
+        function updateQty(idx,delta){cart[idx].qty=(cart[idx].qty||1)+delta;if(cart[idx].qty<=0){removeFromCart(idx);return}saveCart();updateCartBadge();renderCart()}
+        function saveCart(){localStorage.setItem('rassokha_cart',JSON.stringify(cart))}
+        function updateCartBadge(){const count=cart.reduce((sum,item)=>sum+(item.qty||1),0);document.getElementById('cart-count').innerText=count;document.getElementById('bottom-cart-badge').innerText=count;document.getElementById('bottom-cart-badge').style.display=count>0?'flex':'none';renderCartDropdown()}
+        function renderCartDropdown(){const items=document.getElementById('cart-dropdown-items');const footer=document.getElementById('cart-dropdown-footer');const count=cart.reduce((sum,item)=>sum+(item.qty||1),0);document.getElementById('cart-dropdown-count').innerText=count+' товар'+(count%10===1&&count%100!==11?'':count%10>=2&&count%10<=4&&(count%100<10||count%100>=20)?'а':'ов');if(cart.length===0){items.innerHTML='<div style="text-align:center;padding:30px;opacity:0.5"><i class="fas fa-shopping-basket" style="font-size:2rem;margin-bottom:10px;display:block"></i>Корзина пуста</div>';footer.style.display='none';return}footer.style.display='block';items.innerHTML=cart.map((item,idx)=>`<div class="cart-dropdown-item"><img src="${item.img}" alt="${item.name}"><div class="cart-dropdown-item-info"><div class="name">${item.name}</div><div class="price">${(item.price*(item.qty||1)).toLocaleString()} ₽</div></div><div class="cart-qty-control"><button class="cart-qty-btn" onclick="event.stopPropagation();updateQty(${idx},-1)">-</button><span>${item.qty||1}</span><button class="cart-qty-btn" onclick="event.stopPropagation();updateQty(${idx},1)">+</button></div></div>`).join('');const total=cart.reduce((sum,item)=>sum+item.price*(item.qty||1),0);document.getElementById('cart-dropdown-total').innerText=total.toLocaleString()+' ₽'}
+        function toggleCartDropdown(){document.getElementById('cart-dropdown').classList.toggle('active')}
+        function closeCartDropdown(){document.getElementById('cart-dropdown').classList.remove('active')}
+        function renderCart(){const list=document.getElementById('cart-items-list');const footer=document.getElementById('cart-footer');const empty=document.getElementById('cart-empty');const subtitle=document.getElementById('cart-subtitle');if(cart.length===0){list.innerHTML='';footer.style.display='none';empty.style.display='block';subtitle.innerText='Тут пока тихо...';return}empty.style.display='none';footer.style.display='block';const count=cart.reduce((sum,item)=>sum+(item.qty||1),0);subtitle.innerText=`${count} товар${count%10===1&&count%100!==11?'':count%10>=2&&count%10<=4&&(count%100<10||count%100>=20)?'а':'ов'} в корзине`;list.innerHTML=cart.map((item,idx)=>`<div class="cart-item"><img src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/80?text=PC'"><div class="cart-item-info"><div class="name">${item.name}</div><div class="specs">${item.specs.cpu} / ${item.specs.gpu} / ${item.specs.ram}</div><div class="price">${item.price.toLocaleString()} ₽ × ${item.qty||1}</div></div><div class="cart-item-controls"><div class="cart-item-qty"><button onclick="updateQty(${idx},-1)">-</button><span>${item.qty||1}</span><button onclick="updateQty(${idx},1)">+</button></div><button class="cart-item-remove" onclick="removeFromCart(${idx})" title="Удалить"><i class="fas fa-trash-alt"></i></button></div></div>`).join('');updateCartSummary()}
+        function updateCartSummary(){const subtotal=cart.reduce((sum,item)=>sum+item.price*(item.qty||1),0);let discount=0;if(promoApplied){discount=Math.floor(subtotal*promoApplied.discount);document.getElementById('discount-row').style.display='flex';document.getElementById('discount-sum').innerText='-'+discount.toLocaleString()+' ₽'}else{document.getElementById('discount-row').style.display='none'}const total=subtotal-discount;document.getElementById('subtotal-sum').innerText=subtotal.toLocaleString()+' ₽';document.getElementById('total-sum').innerText=total.toLocaleString()+' ₽'}
+        function applyPromo(){const code=document.getElementById('promo-code').value.trim().toUpperCase();const msg=document.getElementById('promo-message');const promos={'BEAST2024':{discount:0.10,name:'BEAST2024'},'WELCOME':{discount:0.05,name:'WELCOME'},'SUMMER':{discount:0.15,name:'SUMMER'}};if(promos[code]){if(promoApplied&&promoApplied.name===code){msg.innerHTML='<span style="color:#ff5e62">Промокод уже применён</span>';msg.style.display='block';return}promoApplied=promos[code];msg.innerHTML=`<span style="color:var(--accent-green)">Промокод ${code} применён! Скидка ${promos[code].discount*100}%</span>`;msg.style.display='block';updateCartSummary();showToast('success','Промокод применён',`Скидка ${promos[code].discount*100}%`)}else{promoApplied=null;msg.innerHTML='<span style="color:#ff5e62">Неверный промокод</span>';msg.style.display='block';updateCartSummary()}}
+        function checkout(){if(cart.length===0)return;showToast('success','Заказ оформлен!','Спасибо за покупку в Рассоха ПК');cart=[];promoApplied=null;saveCart();updateCartBadge();renderCart()}
+        function sendIdea(){const text=document.getElementById('idea-text').value.trim();if(!text){showToast('error','Ошибка','Опишите вашу идею');return}document.getElementById('ideas-form').style.display='none';document.getElementById('ideas-success').style.display='block';showToast('success','Идея отправлена!','Спасибо за обратную связь')}
+        function resetIdeaForm(){document.getElementById('ideas-form').style.display='block';document.getElementById('ideas-success').style.display='none';document.getElementById('idea-name').value='';document.getElementById('idea-contact').value='';document.getElementById('idea-text').value=''}
+        function sendSupport(){const name=document.getElementById('support-name').value.trim();const contact=document.getElementById('support-contact').value.trim();const text=document.getElementById('support-text').value.trim();if(!name||!contact||!text){showToast('error','Ошибка','Заполните все обязательные поля');return}document.getElementById('support-form').style.display='none';document.getElementById('support-success').style.display='block';showToast('success','Заявка принята!','Мастер свяжется с вами')}
+        function resetSupportForm(){document.getElementById('support-form').style.display='block';document.getElementById('support-success').style.display='none';document.getElementById('support-name').value='';document.getElementById('support-contact').value='';document.getElementById('support-topic').value='';document.getElementById('support-text').value=''}
+        function showToast(type,title,message){const container=document.getElementById('toast-container');const toast=document.createElement('div');toast.className=`toast ${type}`;const icons={success:'fa-check-circle',error:'fa-exclamation-circle',info:'fa-info-circle'};toast.innerHTML=`<i class="fas ${icons[type]}"></i><div class="toast-content"><div class="toast-title">${title}</div><div class="toast-message">${message}</div></div><button class="toast-close" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>`;container.appendChild(toast);setTimeout(()=>{toast.style.opacity='0';toast.style.transform='translateX(100%)';setTimeout(()=>toast.remove(),300)},4000)}
+        function initScrollReveal(){const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('active')}})},{threshold:0.1});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}
+        document.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeModal()});
+        document.addEventListener('click',(e)=>{const dropdown=document.getElementById('cart-dropdown');const cartBtn=document.getElementById('n-cart');if(!dropdown.contains(e.target)&&e.target!==cartBtn&&!cartBtn.contains(e.target)){dropdown.classList.remove('active')}});
+    
+    // ============================================
+    // БАЗА ДАННЫХ (встроена в код, но не отображается на сайте)
+    // ============================================
+    const DATABASE_JSON = {
+  "store_info": {
+    "name": "РАССОХА ПК",
+    "description": "Магазин игровых компьютеров",
+    "founded": 2024,
+    "warranty_years": 2,
+    "support_24_7": true,
+    "total_builds": 500
+  },
+  "products": [
+    {
+      "id": 1,
+      "name": "RASSOKHA START",
+      "price": 55000,
+      "old_price": 63249,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=0",
+      "specs": {
+        "cpu": "Intel Core i5-12400F",
+        "gpu": "RTX 3060 12GB",
+        "ram": "16GB DDR4 3200MHz",
+        "motherboard": "B760M Gaming",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "650W 80+ Gold",
+        "case": "Deepcool MATREXX",
+        "cooler": "ID-Cooling SE-214"
+      }
+    },
+    {
+      "id": 2,
+      "name": "RASSOKHA ECO",
+      "price": 63500,
+      "old_price": null,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=1",
+      "specs": {
+        "cpu": "Intel Core i5-12400F",
+        "gpu": "RTX 3060 12GB",
+        "ram": "16GB DDR4 3200MHz",
+        "motherboard": "B760M Gaming",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "650W 80+ Gold",
+        "case": "Deepcool MATREXX",
+        "cooler": "ID-Cooling SE-214"
+      }
+    },
+    {
+      "id": 3,
+      "name": "RASSOKHA BASE",
+      "price": 72000,
+      "old_price": null,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=2",
+      "specs": {
+        "cpu": "Intel Core i5-12400F",
+        "gpu": "RTX 3060 12GB",
+        "ram": "16GB DDR4 3200MHz",
+        "motherboard": "B760M Gaming",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "650W 80+ Gold",
+        "case": "Deepcool MATREXX",
+        "cooler": "ID-Cooling SE-214"
+      }
+    },
+    {
+      "id": 4,
+      "name": "RASSOKHA PRO",
+      "price": 80500,
+      "old_price": 92575,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=3",
+      "specs": {
+        "cpu": "Intel Core i5-12400F",
+        "gpu": "RTX 3060 12GB",
+        "ram": "16GB DDR4 3200MHz",
+        "motherboard": "B760M Gaming",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "650W 80+ Gold",
+        "case": "Deepcool MATREXX",
+        "cooler": "ID-Cooling SE-214"
+      }
+    },
+    {
+      "id": 5,
+      "name": "RASSOKHA ELITE",
+      "price": 89000,
+      "old_price": null,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=4",
+      "specs": {
+        "cpu": "Intel Core i5-12400F",
+        "gpu": "RTX 3060 12GB",
+        "ram": "16GB DDR4 3200MHz",
+        "motherboard": "B760M Gaming",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "650W 80+ Gold",
+        "case": "Deepcool MATREXX",
+        "cooler": "ID-Cooling SE-214"
+      }
+    },
+    {
+      "id": 6,
+      "name": "RASSOKHA GAMER",
+      "price": 102500,
+      "old_price": null,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=5",
+      "specs": {
+        "cpu": "AMD Ryzen 5 7500F",
+        "gpu": "RTX 4060 Ti 8GB",
+        "ram": "16GB DDR4 3200MHz",
+        "motherboard": "B650 Carbon WiFi",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "800W 80+ Gold",
+        "case": "NZXT H5 Flow",
+        "cooler": "Deepcool AK400"
+      }
+    },
+    {
+      "id": 7,
+      "name": "RASSOKHA STREAM",
+      "price": 111000,
+      "old_price": 127649,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=6",
+      "specs": {
+        "cpu": "AMD Ryzen 5 7500F",
+        "gpu": "RTX 4060 Ti 8GB",
+        "ram": "16GB DDR4 3200MHz",
+        "motherboard": "B650 Carbon WiFi",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "800W 80+ Gold",
+        "case": "NZXT H5 Flow",
+        "cooler": "Deepcool AK400"
+      }
+    },
+    {
+      "id": 8,
+      "name": "RASSOKHA WORK",
+      "price": 119500,
+      "old_price": null,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=7",
+      "specs": {
+        "cpu": "AMD Ryzen 5 7500F",
+        "gpu": "RTX 4060 Ti 8GB",
+        "ram": "16GB DDR4 3200MHz",
+        "motherboard": "B650 Carbon WiFi",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "800W 80+ Gold",
+        "case": "NZXT H5 Flow",
+        "cooler": "Deepcool AK400"
+      }
+    },
+    {
+      "id": 9,
+      "name": "RASSOKHA ULTRA",
+      "price": 128000,
+      "old_price": null,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=8",
+      "specs": {
+        "cpu": "AMD Ryzen 5 7500F",
+        "gpu": "RTX 4060 Ti 8GB",
+        "ram": "16GB DDR4 3200MHz",
+        "motherboard": "B650 Carbon WiFi",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "800W 80+ Gold",
+        "case": "NZXT H5 Flow",
+        "cooler": "Deepcool AK400"
+      }
+    },
+    {
+      "id": 10,
+      "name": "RASSOKHA MAX",
+      "price": 136500,
+      "old_price": 156975,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=9",
+      "specs": {
+        "cpu": "AMD Ryzen 5 7500F",
+        "gpu": "RTX 4060 Ti 8GB",
+        "ram": "16GB DDR4 3200MHz",
+        "motherboard": "B650 Carbon WiFi",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "800W 80+ Gold",
+        "case": "NZXT H5 Flow",
+        "cooler": "Deepcool AK400"
+      }
+    },
+    {
+      "id": 11,
+      "name": "RASSOKHA NEO",
+      "price": 150000,
+      "old_price": null,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=10",
+      "specs": {
+        "cpu": "Intel Core i7-14700K",
+        "gpu": "RTX 4070 Super 12GB",
+        "ram": "16GB DDR4 3200MHz",
+        "motherboard": "Z790 Steel Legend",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "950W 80+ Gold",
+        "case": "Fractal Design Meshify",
+        "cooler": "be quiet! Dark Rock 4"
+      }
+    },
+    {
+      "id": 12,
+      "name": "RASSOKHA PRIME",
+      "price": 158500,
+      "old_price": null,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=11",
+      "specs": {
+        "cpu": "Intel Core i7-14700K",
+        "gpu": "RTX 4070 Super 12GB",
+        "ram": "16GB DDR4 3200MHz",
+        "motherboard": "Z790 Steel Legend",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "950W 80+ Gold",
+        "case": "Fractal Design Meshify",
+        "cooler": "be quiet! Dark Rock 4"
+      }
+    },
+    {
+      "id": 13,
+      "name": "RASSOKHA CORE",
+      "price": 167000,
+      "old_price": 192049,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=12",
+      "specs": {
+        "cpu": "Intel Core i7-14700K",
+        "gpu": "RTX 4070 Super 12GB",
+        "ram": "16GB DDR4 3200MHz",
+        "motherboard": "Z790 Steel Legend",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "950W 80+ Gold",
+        "case": "Fractal Design Meshify",
+        "cooler": "be quiet! Dark Rock 4"
+      }
+    },
+    {
+      "id": 14,
+      "name": "RASSOKHA TITAN",
+      "price": 175500,
+      "old_price": null,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=13",
+      "specs": {
+        "cpu": "Intel Core i7-14700K",
+        "gpu": "RTX 4070 Super 12GB",
+        "ram": "32GB DDR5 6000MHz",
+        "motherboard": "Z790 Steel Legend",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "950W 80+ Gold",
+        "case": "Fractal Design Meshify",
+        "cooler": "be quiet! Dark Rock 4"
+      }
+    },
+    {
+      "id": 15,
+      "name": "RASSOKHA BEAST",
+      "price": 184000,
+      "old_price": null,
+      "badge": null,
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=14",
+      "specs": {
+        "cpu": "Intel Core i7-14700K",
+        "gpu": "RTX 4070 Super 12GB",
+        "ram": "32GB DDR5 6000MHz",
+        "motherboard": "Z790 Steel Legend",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "950W 80+ Gold",
+        "case": "Fractal Design Meshify",
+        "cooler": "be quiet! Dark Rock 4"
+      }
+    },
+    {
+      "id": 16,
+      "name": "RASSOKHA LEGEND",
+      "price": 197500,
+      "old_price": 227124,
+      "badge": "hot",
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=15",
+      "specs": {
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "gpu": "RTX 4080 16GB",
+        "ram": "32GB DDR5 6000MHz",
+        "motherboard": "X670E Taichi",
+        "ssd": "1TB NVMe Gen4",
+        "psu": "1100W 80+ Gold",
+        "case": "Lian Li O11",
+        "cooler": "NZXT Kraken X63"
+      }
+    },
+    {
+      "id": 17,
+      "name": "RASSOKHA HERO",
+      "price": 206000,
+      "old_price": null,
+      "badge": "hot",
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=16",
+      "specs": {
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "gpu": "RTX 4080 16GB",
+        "ram": "32GB DDR5 6000MHz",
+        "motherboard": "X670E Taichi",
+        "ssd": "2TB NVMe Gen4",
+        "psu": "1100W 80+ Gold",
+        "case": "Lian Li O11",
+        "cooler": "NZXT Kraken X63"
+      }
+    },
+    {
+      "id": 18,
+      "name": "RASSOKHA MASTER",
+      "price": 214500,
+      "old_price": null,
+      "badge": "hot",
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=17",
+      "specs": {
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "gpu": "RTX 4080 16GB",
+        "ram": "32GB DDR5 6000MHz",
+        "motherboard": "X670E Taichi",
+        "ssd": "2TB NVMe Gen4",
+        "psu": "1100W 80+ Gold",
+        "case": "Lian Li O11",
+        "cooler": "NZXT Kraken X63"
+      }
+    },
+    {
+      "id": 19,
+      "name": "RASSOKHA KING",
+      "price": 223000,
+      "old_price": 256449,
+      "badge": "hot",
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=18",
+      "specs": {
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "gpu": "RTX 4080 16GB",
+        "ram": "32GB DDR5 6000MHz",
+        "motherboard": "X670E Taichi",
+        "ssd": "2TB NVMe Gen4",
+        "psu": "1100W 80+ Gold",
+        "case": "Lian Li O11",
+        "cooler": "NZXT Kraken X63"
+      }
+    },
+    {
+      "id": 20,
+      "name": "RASSOKHA GOD",
+      "price": 231500,
+      "old_price": null,
+      "badge": "hot",
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=19",
+      "specs": {
+        "cpu": "AMD Ryzen 7 7800X3D",
+        "gpu": "RTX 4080 16GB",
+        "ram": "32GB DDR5 6000MHz",
+        "motherboard": "X670E Taichi",
+        "ssd": "2TB NVMe Gen4",
+        "psu": "1100W 80+ Gold",
+        "case": "Lian Li O11",
+        "cooler": "NZXT Kraken X63"
+      }
+    },
+    {
+      "id": 21,
+      "name": "RASSOKHA LITE",
+      "price": 245000,
+      "old_price": null,
+      "badge": "new",
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=20",
+      "specs": {
+        "cpu": "Intel Core i9-14900K",
+        "gpu": "RTX 4090 24GB",
+        "ram": "32GB DDR5 6000MHz",
+        "motherboard": "Z790 Maximus Hero",
+        "ssd": "2TB NVMe Gen4",
+        "psu": "1250W 80+ Gold",
+        "case": "Corsair 7000D",
+        "cooler": "Corsair H150i"
+      }
+    },
+    {
+      "id": 22,
+      "name": "RASSOKHA PLUS",
+      "price": 253500,
+      "old_price": 291525,
+      "badge": "new",
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=21",
+      "specs": {
+        "cpu": "Intel Core i9-14900K",
+        "gpu": "RTX 4090 24GB",
+        "ram": "32GB DDR5 6000MHz",
+        "motherboard": "Z790 Maximus Hero",
+        "ssd": "2TB NVMe Gen4",
+        "psu": "1250W 80+ Gold",
+        "case": "Corsair 7000D",
+        "cooler": "Corsair H150i"
+      }
+    },
+    {
+      "id": 23,
+      "name": "RASSOKHA SUPER",
+      "price": 262000,
+      "old_price": null,
+      "badge": "new",
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=22",
+      "specs": {
+        "cpu": "Intel Core i9-14900K",
+        "gpu": "RTX 4090 24GB",
+        "ram": "32GB DDR5 6000MHz",
+        "motherboard": "Z790 Maximus Hero",
+        "ssd": "2TB NVMe Gen4",
+        "psu": "1250W 80+ Gold",
+        "case": "Corsair 7000D",
+        "cooler": "Corsair H150i"
+      }
+    },
+    {
+      "id": 24,
+      "name": "RASSOKHA HYPER",
+      "price": 270500,
+      "old_price": null,
+      "badge": "new",
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=23",
+      "specs": {
+        "cpu": "Intel Core i9-14900K",
+        "gpu": "RTX 4090 24GB",
+        "ram": "32GB DDR5 6000MHz",
+        "motherboard": "Z790 Maximus Hero",
+        "ssd": "2TB NVMe Gen4",
+        "psu": "1250W 80+ Gold",
+        "case": "Corsair 7000D",
+        "cooler": "Corsair H150i"
+      }
+    },
+    {
+      "id": 25,
+      "name": "RASSOKHA ULTIMATE",
+      "price": 279000,
+      "old_price": 320850,
+      "badge": "new",
+      "image_url": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=24",
+      "specs": {
+        "cpu": "Intel Core i9-14900K",
+        "gpu": "RTX 4090 24GB",
+        "ram": "32GB DDR5 6000MHz",
+        "motherboard": "Z790 Maximus Hero",
+        "ssd": "2TB NVMe Gen4",
+        "psu": "1250W 80+ Gold",
+        "case": "Corsair 7000D",
+        "cooler": "Corsair H150i"
+      }
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "name": "Алексей К.",
+      "contact": "alexey@mail.ru",
+      "phone": "+7 900 123-45-67",
+      "city": "Москва"
+    },
+    {
+      "id": 2,
+      "name": "Марина Д.",
+      "contact": "marina_d@yandex.ru",
+      "phone": "+7 911 234-56-78",
+      "city": "Санкт-Петербург"
+    },
+    {
+      "id": 3,
+      "name": "Игорь С.",
+      "contact": "igor_s",
+      "phone": "+7 922 345-67-89",
+      "city": "Новосибирск"
+    },
+    {
+      "id": 4,
+      "name": "Дмитрий В.",
+      "contact": "dmitry_v@gmail.com",
+      "phone": "+7 933 456-78-90",
+      "city": "Казань"
+    },
+    {
+      "id": 5,
+      "name": "Елена П.",
+      "contact": "elena_p",
+      "phone": "+7 944 567-89-01",
+      "city": "Екатеринбург"
+    }
+  ],
+  "orders": [
+    {
+      "id": 101,
+      "customer_id": 1,
+      "product_id": 25,
+      "quantity": 1,
+      "total_price": 192500,
+      "status": "delivered",
+      "date": "2026-05-15",
+      "promo": null
+    },
+    {
+      "id": 102,
+      "customer_id": 2,
+      "product_id": 5,
+      "quantity": 1,
+      "total_price": 60000,
+      "status": "delivered",
+      "date": "2026-05-20",
+      "promo": null
+    },
+    {
+      "id": 103,
+      "customer_id": 3,
+      "product_id": 23,
+      "quantity": 1,
+      "total_price": 170000,
+      "status": "delivered",
+      "date": "2024-06-01",
+      "promo": null
+    },
+    {
+      "id": 104,
+      "customer_id": 3,
+      "product_id": 24,
+      "quantity": 1,
+      "total_price": 181000,
+      "status": "processing",
+      "date": "2026-06-05",
+      "promo": "BEAST2024"
+    },
+    {
+      "id": 105,
+      "customer_id": 4,
+      "product_id": 10,
+      "quantity": 1,
+      "total_price": 140000,
+      "status": "shipped",
+      "date": "2026-06-07",
+      "promo": "WELCOME"
+    },
+    {
+      "id": 106,
+      "customer_id": 5,
+      "product_id": 15,
+      "quantity": 1,
+      "total_price": 177500,
+      "status": "new",
+      "date": "2026-06-09",
+      "promo": null
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "customer_id": 1,
+      "product_id": 25,
+      "rating": 5,
+      "text": "Купил RASSOKHA ULTIMATE для работы с 3D. ПК пришёл через 2 дня, идеально упакован. Все компоненты оригинальные, сборка аккуратная. Рекомендую!",
+      "date": "2026-05-18"
+    },
+    {
+      "id": 2,
+      "customer_id": 2,
+      "product_id": 5,
+      "rating": 5,
+      "text": "Заказывала для сына на день рождения. Поддержка помогла выбрать оптимальную конфигурацию под бюджет. Сын в восторге, Cyberpunk на ультрах летает!",
+      "date": "2026-05-22"
+    },
+    {
+      "id": 3,
+      "customer_id": 3,
+      "product_id": 23,
+      "rating": 4,
+      "text": "Вторая покупка в Рассоха. Первый ПК работает без нареканий 2 года. Обновился на RTX 4070 — разница ощутима. Спасибо за качество!",
+      "date": "2026-06-03"
+    }
+  ],
+  "promocodes": [
+    {
+      "code": "BEAST2024",
+      "discount_percent": 10,
+      "max_uses": 100,
+      "used_count": 12,
+      "valid_until": "2026-12-31",
+      "active": true
+    },
+    {
+      "code": "WELCOME",
+      "discount_percent": 5,
+      "max_uses": 500,
+      "used_count": 89,
+      "valid_until": "2026-12-31",
+      "active": true
+    },
+    {
+      "code": "SUMMER",
+      "discount_percent": 15,
+      "max_uses": 50,
+      "used_count": 3,
+      "valid_until": "2026-08-31",
+      "active": true
+    }
+  ]
+};
+
+    const DATABASE_SQL = `-- ============================================
+-- БАЗА ДАННЫХ: РАССОХА ПК
+-- Магазин игровых компьютеров
+-- Создано: 2026-06-09
+-- ============================================
+
+DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS promocodes;
+DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS products;
+
+CREATE TABLE products (
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    price INTEGER NOT NULL,
+    old_price INTEGER,
+    badge VARCHAR(10),
+    image_url VARCHAR(500),
+    cpu VARCHAR(100),
+    gpu VARCHAR(100),
+    ram VARCHAR(50),
+    motherboard VARCHAR(100),
+    ssd VARCHAR(50),
+    psu VARCHAR(50),
+    case_name VARCHAR(100),
+    cooler VARCHAR(100)
+);
+
+CREATE TABLE customers (
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    contact VARCHAR(100),
+    phone VARCHAR(20),
+    city VARCHAR(50)
+);
+
+CREATE TABLE orders (
+    id INTEGER PRIMARY KEY,
+    customer_id INTEGER NOT NULL,
+    product_id INTEGER NOT NULL,
+    quantity INTEGER DEFAULT 1,
+    total_price INTEGER NOT NULL,
+    status VARCHAR(20) DEFAULT 'new',
+    date DATE,
+    promo VARCHAR(20),
+    FOREIGN KEY (customer_id) REFERENCES customers(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+CREATE TABLE reviews (
+    id INTEGER PRIMARY KEY,
+    customer_id INTEGER NOT NULL,
+    product_id INTEGER NOT NULL,
+    rating INTEGER CHECK (rating >= 1 AND rating <= 5),
+    text TEXT,
+    date DATE,
+    FOREIGN KEY (customer_id) REFERENCES customers(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+CREATE TABLE promocodes (
+    code VARCHAR(20) PRIMARY KEY,
+    discount_percent INTEGER NOT NULL,
+    max_uses INTEGER DEFAULT 0,
+    used_count INTEGER DEFAULT 0,
+    valid_until DATE,
+    active BOOLEAN DEFAULT TRUE
+);
+
+INSERT INTO products (id, name, price, old_price, badge, image_url, cpu, gpu, ram, motherboard, ssd, psu, case_name, cooler) VALUES
+(1, 'RASSOKHA START', 55000, 63249, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=0', 'Intel Core i5-12400F', 'RTX 3060 12GB', '16GB DDR4 3200MHz', 'B760M Gaming', '1TB NVMe Gen4', '650W 80+ Gold', 'Deepcool MATREXX', 'ID-Cooling SE-214'),
+(2, 'RASSOKHA ECO', 63500, NULL, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=1', 'Intel Core i5-12400F', 'RTX 3060 12GB', '16GB DDR4 3200MHz', 'B760M Gaming', '1TB NVMe Gen4', '650W 80+ Gold', 'Deepcool MATREXX', 'ID-Cooling SE-214'),
+(3, 'RASSOKHA BASE', 72000, NULL, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=2', 'Intel Core i5-12400F', 'RTX 3060 12GB', '16GB DDR4 3200MHz', 'B760M Gaming', '1TB NVMe Gen4', '650W 80+ Gold', 'Deepcool MATREXX', 'ID-Cooling SE-214'),
+(4, 'RASSOKHA PRO', 80500, 92575, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=3', 'Intel Core i5-12400F', 'RTX 3060 12GB', '16GB DDR4 3200MHz', 'B760M Gaming', '1TB NVMe Gen4', '650W 80+ Gold', 'Deepcool MATREXX', 'ID-Cooling SE-214'),
+(5, 'RASSOKHA ELITE', 89000, NULL, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=4', 'Intel Core i5-12400F', 'RTX 3060 12GB', '16GB DDR4 3200MHz', 'B760M Gaming', '1TB NVMe Gen4', '650W 80+ Gold', 'Deepcool MATREXX', 'ID-Cooling SE-214'),
+(6, 'RASSOKHA GAMER', 102500, NULL, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=5', 'AMD Ryzen 5 7500F', 'RTX 4060 Ti 8GB', '16GB DDR4 3200MHz', 'B650 Carbon WiFi', '1TB NVMe Gen4', '800W 80+ Gold', 'NZXT H5 Flow', 'Deepcool AK400'),
+(7, 'RASSOKHA STREAM', 111000, 127649, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=6', 'AMD Ryzen 5 7500F', 'RTX 4060 Ti 8GB', '16GB DDR4 3200MHz', 'B650 Carbon WiFi', '1TB NVMe Gen4', '800W 80+ Gold', 'NZXT H5 Flow', 'Deepcool AK400'),
+(8, 'RASSOKHA WORK', 119500, NULL, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=7', 'AMD Ryzen 5 7500F', 'RTX 4060 Ti 8GB', '16GB DDR4 3200MHz', 'B650 Carbon WiFi', '1TB NVMe Gen4', '800W 80+ Gold', 'NZXT H5 Flow', 'Deepcool AK400'),
+(9, 'RASSOKHA ULTRA', 128000, NULL, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=8', 'AMD Ryzen 5 7500F', 'RTX 4060 Ti 8GB', '16GB DDR4 3200MHz', 'B650 Carbon WiFi', '1TB NVMe Gen4', '800W 80+ Gold', 'NZXT H5 Flow', 'Deepcool AK400'),
+(10, 'RASSOKHA MAX', 136500, 156975, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=9', 'AMD Ryzen 5 7500F', 'RTX 4060 Ti 8GB', '16GB DDR4 3200MHz', 'B650 Carbon WiFi', '1TB NVMe Gen4', '800W 80+ Gold', 'NZXT H5 Flow', 'Deepcool AK400'),
+(11, 'RASSOKHA NEO', 150000, NULL, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=10', 'Intel Core i7-14700K', 'RTX 4070 Super 12GB', '16GB DDR4 3200MHz', 'Z790 Steel Legend', '1TB NVMe Gen4', '950W 80+ Gold', 'Fractal Design Meshify', 'be quiet! Dark Rock 4'),
+(12, 'RASSOKHA PRIME', 158500, NULL, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=11', 'Intel Core i7-14700K', 'RTX 4070 Super 12GB', '16GB DDR4 3200MHz', 'Z790 Steel Legend', '1TB NVMe Gen4', '950W 80+ Gold', 'Fractal Design Meshify', 'be quiet! Dark Rock 4'),
+(13, 'RASSOKHA CORE', 167000, 192049, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=12', 'Intel Core i7-14700K', 'RTX 4070 Super 12GB', '16GB DDR4 3200MHz', 'Z790 Steel Legend', '1TB NVMe Gen4', '950W 80+ Gold', 'Fractal Design Meshify', 'be quiet! Dark Rock 4'),
+(14, 'RASSOKHA TITAN', 175500, NULL, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=13', 'Intel Core i7-14700K', 'RTX 4070 Super 12GB', '32GB DDR5 6000MHz', 'Z790 Steel Legend', '1TB NVMe Gen4', '950W 80+ Gold', 'Fractal Design Meshify', 'be quiet! Dark Rock 4'),
+(15, 'RASSOKHA BEAST', 184000, NULL, NULL, 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=14', 'Intel Core i7-14700K', 'RTX 4070 Super 12GB', '32GB DDR5 6000MHz', 'Z790 Steel Legend', '1TB NVMe Gen4', '950W 80+ Gold', 'Fractal Design Meshify', 'be quiet! Dark Rock 4'),
+(16, 'RASSOKHA LEGEND', 197500, 227124, 'hot', 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=15', 'AMD Ryzen 7 7800X3D', 'RTX 4080 16GB', '32GB DDR5 6000MHz', 'X670E Taichi', '1TB NVMe Gen4', '1100W 80+ Gold', 'Lian Li O11', 'NZXT Kraken X63'),
+(17, 'RASSOKHA HERO', 206000, NULL, 'hot', 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=16', 'AMD Ryzen 7 7800X3D', 'RTX 4080 16GB', '32GB DDR5 6000MHz', 'X670E Taichi', '2TB NVMe Gen4', '1100W 80+ Gold', 'Lian Li O11', 'NZXT Kraken X63'),
+(18, 'RASSOKHA MASTER', 214500, NULL, 'hot', 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=17', 'AMD Ryzen 7 7800X3D', 'RTX 4080 16GB', '32GB DDR5 6000MHz', 'X670E Taichi', '2TB NVMe Gen4', '1100W 80+ Gold', 'Lian Li O11', 'NZXT Kraken X63'),
+(19, 'RASSOKHA KING', 223000, 256449, 'hot', 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=18', 'AMD Ryzen 7 7800X3D', 'RTX 4080 16GB', '32GB DDR5 6000MHz', 'X670E Taichi', '2TB NVMe Gen4', '1100W 80+ Gold', 'Lian Li O11', 'NZXT Kraken X63'),
+(20, 'RASSOKHA GOD', 231500, NULL, 'hot', 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=19', 'AMD Ryzen 7 7800X3D', 'RTX 4080 16GB', '32GB DDR5 6000MHz', 'X670E Taichi', '2TB NVMe Gen4', '1100W 80+ Gold', 'Lian Li O11', 'NZXT Kraken X63'),
+(21, 'RASSOKHA LITE', 245000, NULL, 'new', 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=20', 'Intel Core i9-14900K', 'RTX 4090 24GB', '32GB DDR5 6000MHz', 'Z790 Maximus Hero', '2TB NVMe Gen4', '1250W 80+ Gold', 'Corsair 7000D', 'Corsair H150i'),
+(22, 'RASSOKHA PLUS', 253500, 291525, 'new', 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=21', 'Intel Core i9-14900K', 'RTX 4090 24GB', '32GB DDR5 6000MHz', 'Z790 Maximus Hero', '2TB NVMe Gen4', '1250W 80+ Gold', 'Corsair 7000D', 'Corsair H150i'),
+(23, 'RASSOKHA SUPER', 262000, NULL, 'new', 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=22', 'Intel Core i9-14900K', 'RTX 4090 24GB', '32GB DDR5 6000MHz', 'Z790 Maximus Hero', '2TB NVMe Gen4', '1250W 80+ Gold', 'Corsair 7000D', 'Corsair H150i'),
+(24, 'RASSOKHA HYPER', 270500, NULL, 'new', 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=23', 'Intel Core i9-14900K', 'RTX 4090 24GB', '32GB DDR5 6000MHz', 'Z790 Maximus Hero', '2TB NVMe Gen4', '1250W 80+ Gold', 'Corsair 7000D', 'Corsair H150i'),
+(25, 'RASSOKHA ULTIMATE', 279000, 320850, 'new', 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=600&sig=24', 'Intel Core i9-14900K', 'RTX 4090 24GB', '32GB DDR5 6000MHz', 'Z790 Maximus Hero', '2TB NVMe Gen4', '1250W 80+ Gold', 'Corsair 7000D', 'Corsair H150i');
+
+INSERT INTO customers (id, name, contact, phone, city) VALUES
+(1, 'Алексей К.', 'alexey@mail.ru', '+7 900 123-45-67', 'Москва'),
+(2, 'Марина Д.', 'marina_d@yandex.ru', '+7 911 234-56-78', 'Санкт-Петербург'),
+(3, 'Игорь С.', 'igor_s', '+7 922 345-67-89', 'Новосибирск'),
+(4, 'Дмитрий В.', 'dmitry_v@gmail.com', '+7 933 456-78-90', 'Казань'),
+(5, 'Елена П.', 'elena_p', '+7 944 567-89-01', 'Екатеринбург');
+
+INSERT INTO orders (id, customer_id, product_id, quantity, total_price, status, date, promo) VALUES
+(101, 1, 25, 1, 192500, 'delivered', '2026-05-15', NULL),
+(102, 2, 5, 1, 60000, 'delivered', '2026-05-20', NULL),
+(103, 3, 23, 1, 170000, 'delivered', '2024-06-01', NULL),
+(104, 3, 24, 1, 181000, 'processing', '2026-06-05', 'BEAST2024'),
+(105, 4, 10, 1, 140000, 'shipped', '2026-06-07', 'WELCOME'),
+(106, 5, 15, 1, 177500, 'new', '2026-06-09', NULL);
+
+INSERT INTO reviews (id, customer_id, product_id, rating, text, date) VALUES
+(1, 1, 25, 5, 'Купил RASSOKHA ULTIMATE для работы с 3D. ПК пришёл через 2 дня, идеально упакован. Все компоненты оригинальные, сборка аккуратная. Рекомендую!', '2026-05-18'),
+(2, 2, 5, 5, 'Заказывала для сына на день рождения. Поддержка помогла выбрать оптимальную конфигурацию под бюджет. Сын в восторге, Cyberpunk на ультрах летает!', '2026-05-22'),
+(3, 3, 23, 4, 'Вторая покупка в Рассоха. Первый ПК работает без нареканий 2 года. Обновился на RTX 4070 — разница ощутима. Спасибо за качество!', '2026-06-03');
+
+INSERT INTO promocodes (code, discount_percent, max_uses, used_count, valid_until, active) VALUES
+('BEAST2024', 10, 100, 12, '2026-12-31', TRUE),
+('WELCOME', 5, 500, 89, '2026-12-31', TRUE),
+('SUMMER', 15, 50, 3, '2026-08-31', TRUE);`;
+
+    // База данных доступна через консоль: console.log(DATABASE_JSON)
+    // Или для использования в логике сайта
+</script>
+</body>
+</html>
